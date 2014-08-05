@@ -94,7 +94,7 @@ def queue_info(request):
             resp += reserved_resp
         except Exception, e:
             resp += str(e)
-        
+
     return HttpResponse(resp)
 
 def live_builds(request):
@@ -168,7 +168,7 @@ def _build_branches(project, branch_list):
             else:
                 not_building.add(version.slug)
     return (to_build, not_building)
-    
+
 
 def _build_url(url, branches):
     try:
@@ -484,7 +484,6 @@ def server_error_404(request, template_name='404.html'):
         project = get_object_or_404(Project, slug=project_slug)
         for redirect in project.redirects.all():
             if redirect.redirect_type == 'prefix':
-                import ipdb; ipdb.set_trace()
                 if full_path.startswith(redirect.from_url):
                     log.debug('Redirecting %s' % redirect)
                     cut_path = re.sub('^%s' % redirect.from_url, '', full_path)
